@@ -8,7 +8,7 @@ data = pd.read_csv("D:/Forage/Quantium/sw/quantium-starter-repo/final.csv")
 data = data.sort_values(by= "date", ascending= True)
 
 
-fig = px.line(data,x= "date",y= "Total Sales in $", color= "region")
+fig = px.line(data,x= "date",y= "Total Sales in $")
 
 app.layout = html.Div(children=[
     html.H1(children='Sales of Pink Morsel'),
