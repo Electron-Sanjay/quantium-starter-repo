@@ -1,0 +1,38 @@
+from dash import Dash, html,dcc
+import plotly.express as px
+import pandas as pd
+
+print("aaa")
+
+
+data = pd.read_csv("D:/Forage/Quantium/sw/quantium-starter-repo/final.csv")
+
+data = data.sort_values(by= "date", ascending= True)
+
+# initialize dash
+dash_app = Dash(__name__)
+
+# create the visualization
+line_chart = px.line(data, x="date", y="Total Sales in $", title="Pink Morsel Sales")
+visualization = dcc.Graph(
+    id="visualization",
+    figure=line_chart
+)
+
+# create the header
+header = html.H1(
+    "Pink Morsel Visualizer",
+    id="header"
+)
+
+# define the app layout
+dash_app.layout = html.Div(
+    [
+        header,
+        visualization
+    ]
+)
+
+# this is only true if the module is executed as the program entrypoint
+if __name__ == '__main__':
+    dash_app.run_server()
